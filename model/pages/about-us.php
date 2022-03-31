@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+session_start(); 
+$_SESSION['currPage'] = '../model/pages/about-us.php';
 include '../header.php'; 
 printHeader(false); 
 ?>

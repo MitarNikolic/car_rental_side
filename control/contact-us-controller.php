@@ -1,7 +1,6 @@
 <?php
-
+session_start(); 
 //Add the Message to the DB and display the anwser here. 
-
 //Placeholder is using a file instead of DB.
 
 $name = $_REQUEST['name']; 
@@ -15,4 +14,6 @@ $filestream = fopen($filename, 'a+');
 fwrite($filestream, $name.', '.$email.', '.$message.';');
 fclose($filestream); 
 
+header('location:'.$_SESSION['currPage']);
 
+?>

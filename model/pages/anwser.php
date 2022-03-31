@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <?php
-
     //Reading
     $filename = '../../model/state_files/user_messages.txt'; 
     $filestream = fopen($filename, 'r'); 
