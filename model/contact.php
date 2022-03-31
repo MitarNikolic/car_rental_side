@@ -1,34 +1,36 @@
 <?php
-echo '<section id="contact">
-     <div class="container">
-          <div class="row">
 
-               <div class="col-md-6 col-sm-12">
-                    <form id="contact-form" role="form" action="control/contact-us-controller.phpx" method="post">
-                         <div class="col-md-12 col-sm-12">
-                              <input type="text" class="form-control" placeholder="Enter full name" name="name" required>
-               
-                              <input type="email" class="form-control" placeholder="Enter email address" name="email" required>
+function printContact(string $pathToRoot){
+    echo '<section id="contact">
+    <div class="container">
+         <div class="row">
 
-                              <textarea class="form-control" rows="6" placeholder="Tell us about your message" name="message" required></textarea>
-                         </div>
+              <div class="col-md-6 col-sm-12">
+                   <form id="contact-form" role="form" action="'.$pathToRoot.'/control/contact-controller.php" method="post">
+                        <div class="col-md-12 col-sm-12">
+                             <input type="text" class="form-control" placeholder="Enter full name" name="name" required>
+              
+                             <input type="email" class="form-control" placeholder="Enter email address" name="email" required>
 
-                         <div class="col-md-4 col-sm-12">
-                              <input type="submit" class="form-control" name="send message" value="Send Message">
-                         </div>
+                             <textarea class="form-control" rows="6" placeholder="Tell us about your message" name="message" required></textarea>
+                        </div>
 
-                    </form>
-               </div>
+                        <div class="col-md-4 col-sm-12">
+                             <input type="submit" class="form-control" name="send message" value="Send Message">
+                        </div>
 
-               <div class="col-md-6 col-sm-12">
-                    <div class="contact-image">
-                         <img src="../../view/images/contact-1-600x400.jpg" class="img-responsive" alt="">
-                    </div>
-               </div>
+                   </form>
+              </div>
 
-          </div>
-     </div>
-</section> '; 
+              <div class="col-md-6 col-sm-12">
+                   <div class="contact-image">
+                        <img src="'.$pathToRoot.'/view/images/contact-1-600x400.jpg" class="img-responsive" alt="">
+                   </div>
+              </div>
 
+         </div>
+    </div>
+</section> ';
+}
 
 ?>

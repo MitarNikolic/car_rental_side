@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
      session_start(); 
-     $_SESSION['currPage'] = '../model/pages/contact.php';
+     $_SESSION['currPage'] = '../model/pages/contact-us.php';
      include '../header.php';
      printHeader(false); 
 ?>
@@ -23,6 +23,7 @@
 
      <?php
      include '../contact.php';
+     printContact('../../'); 
      include '../footer.php'; 
      printFooter(false); 
      ?>
