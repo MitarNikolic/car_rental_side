@@ -29,7 +29,7 @@ printHeader(false);
           <div class="container">
                <div class="row">
                     <div class="col-md-offset-1 col-md-4 col-xs-12 pull-right">
-                         <img src="images/about-1-720x720.jpg" class="img-responsive img-circle" alt="">
+                         <img src="../../view/images/about-1-720x720.jpg" class="img-responsive img-circle" alt="">
                     </div>
 
                     <div class="col-md-7 col-xs-12">
@@ -53,7 +53,7 @@ printHeader(false);
           <div class="container">
                <div class="row">
                     <div class="col-md-4 col-xs-12">
-                         <img src="images/about-2-720x720.jpg" class="img-responsive img-circle" alt="">
+                         <img src="../../view/images/about-2-720x720.jpg" class="img-responsive img-circle" alt="">
                     </div>
 
                     <div class="col-md-offset-1 col-md-7 col-xs-12">
