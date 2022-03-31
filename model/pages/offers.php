@@ -7,17 +7,8 @@ include '../header.php';
 printHeader(false); 
 ?>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
-
-     <!-- PRE LOADER -->
-     <section class="preloader">
-          <div class="spinner">
-
-               <span class="spinner-rotate"></span>
-               
-          </div>
-     </section>
-
      <?php
+      include '../preloader.php'; 
       include '../navigation.php'; 
       printNavigation(false); 
      ?>

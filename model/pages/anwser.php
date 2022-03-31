@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <?php
+    //Header
+     session_start(); 
+     $_SESSION['currPage'] = '../model/pages/contact.php';
+     include '../header.php';
+     printHeader(false); 
+
     //Reading
     $filename = '../../model/state_files/user_messages.txt'; 
     $filestream = fopen($filename, 'r'); 
@@ -8,13 +14,13 @@
     $_SESSION["fileContent"] = $fileContent;
     fclose($filestream); 
     ?>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>anwser</title>
-    </head>
+
     <body>
+        <?php 
+        include '../preloader.php'; 
+        include '../navigation.php'; 
+        printNavigation(false);
+        ?>
         <script>
             function GetAnswer(fullInformation) {
                 var parts = fullInformation.split(','); 
@@ -23,6 +29,13 @@
                 return false;
             }
         </script>
+        <div class="container">
+               <div class="text-center">
+                    <h1>User Questions</h1>
+                    <br>
+               </div>
+          </div>
+
         <div class="questions">
             <?php
         //Displaying
@@ -31,7 +44,6 @@
         echo '<ul>'; 
         foreach($fileSplitContent as $split){
             echo "<a href='#' onclick= \"GetAnswer('$split')\"><li>$split</li></a>"; 
-            //onclick="GetAnwser("sfsf,fnsadjf")"
         }
         echo '</ul>'; 
         ?>
@@ -41,10 +53,14 @@
             <textarea id="questionText" name="question" readonly>
             </textarea>
             <h2>Anwser</h2>
-            <textarea id="questionText" name="question" readonly>
+            <textarea id="questionText" name="question">
             </textarea>
             <input type="submit" text="Anwser" name="answer">
         </form>
+        <?php
+        include '../footer.php'; 
+        printFooter(false); 
+     ?>
     </body>
 </html>
 

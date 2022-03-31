@@ -16,8 +16,6 @@ function printNavigation(bool $isInRoot){
                     <span class="icon icon-bar"></span>
                     <span class="icon icon-bar"></span>
                </button>
-     
-               <!-- lOGO TEXT HERE -->
                <a href="#" class="navbar-brand">Car Rental Website</a>
           </div>
 
@@ -31,7 +29,8 @@ function printNavigation(bool $isInRoot){
                               <li class="active"><a href="'.$pathToFolder.'about-us.php">About Us</a></li>
                          </ul>
                     </li>
-                    <li><a href="'.$pathToFolder.'contact.php">Contact Us</a></li>
+                    <li><a href="'.$pathToFolder.'contact-us.php">Contact Us</a></li>
+                    <li><a href="'.$pathToFolder.'anwser.php">User Questions</a></li>
                </ul>
           </div>
      
