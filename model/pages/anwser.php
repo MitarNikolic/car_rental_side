@@ -15,7 +15,7 @@
     fclose($filestream); 
     ?>
 
-    <body>
+    <body  id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
         <?php 
         include '../preloader.php'; 
         include '../navigation.php'; 
@@ -35,7 +35,7 @@
                     <br>
                </div>
           </div>
-
+        
         <div class="questions">
             <?php
         //Displaying
@@ -43,24 +43,48 @@
         $fileSplitContent = array_diff(explode(';', $fileContent), array("")); 
         echo '<ul>'; 
         foreach($fileSplitContent as $split){
-            echo "<a href='#' onclick= \"GetAnswer('$split')\"><li>$split</li></a>"; 
+            $inputFields = explode(',', $split);
+            echo "<a href='#' onclick= \"GetAnswer('$split')\"><li>$inputFields[0], $inputFields[1]</li></a>"; 
         }
         echo '</ul>'; 
         ?>
         </div>
-        <form method="POST">
-            <h2>Question</h2>
-            <textarea id="questionText" name="question" readonly>
-            </textarea>
-            <h2>Anwser</h2>
-            <textarea id="questionText" name="question">
-            </textarea>
-            <input type="submit" text="Anwser" name="answer">
-        </form>
+
+<section id="answer", class="contentSection">
+    <div class="container">
+         <div class="row">
+              <div class="col-md-6 col-sm-12">
+                   <form id="answer-form" role="form" action="" method="post">
+                        <div class="col-md-12 col-sm-12">
+                             <textarea class="form-control" rows="8" placeholder="The questions will appear here" name="question" readonly></textarea>
+                             <textarea class="form-control" rows="8" name="answer" required></textarea>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                             <input type="submit" class="form-control" name="answer" value="Answer">
+                        </div>
+
+                   </form>
+              </div>
+
+              <div class="col-md-6 col-sm-12">
+                   <div class="contact-image">
+                        <img src="../../view/images/answer.png" class="img-responsive" alt="">
+                   </div>
+              </div>
+
+         </div>
+    </div>
+</section> 
         <?php
         include '../footer.php'; 
         printFooter(false); 
-     ?>
+        ?>
+        <style>
+            .contentSection{
+                background-color: lightgreen; 
+            }
+        </style>
     </body>
 </html>
 

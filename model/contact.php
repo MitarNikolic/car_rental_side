@@ -4,7 +4,6 @@ function printContact(string $pathToRoot){
     echo '<section id="contact">
     <div class="container">
          <div class="row">
-
               <div class="col-md-6 col-sm-12">
                    <form id="contact-form" role="form" action="'.$pathToRoot.'/control/contact-controller.php" method="post">
                         <div class="col-md-12 col-sm-12">

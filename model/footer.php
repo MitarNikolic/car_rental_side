@@ -49,7 +49,7 @@ function printFooter(bool $isInRoot){
                                    <li><a href="'.$pathToRoot.'index.php">Home</a></li>
                                    <li><a href="'.$pathToFolder.'about-us.php">About Us</a></li>
                                    <li><a href="'.$pathToFolder.'terms.php">Terms & Conditions</a></li>
-                                   <li><a href="'.$pathToFolder.'contact.php">Contact Us</a></li>
+                                   <li><a href="'.$pathToFolder.'contact-us.php">Contact Us</a></li>
                               </ul>
                          </div>
                     </div>
