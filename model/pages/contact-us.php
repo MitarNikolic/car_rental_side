@@ -23,7 +23,7 @@
 
      <?php
      include '../contact.php';
-     printContact('../../'); 
+     printContact('../..'); 
      include '../footer.php'; 
      printFooter(false); 
      ?>

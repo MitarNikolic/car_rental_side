@@ -11,7 +11,7 @@ fclose($idFile);
 return $id; 
 }
 
-function SetId(int $id){$
+function SetId(int $id){
     $idFileName = '../model/state_files/idLog.txt'; 
     $idFile = fopen($idFileName, 'w'); //TODO: Check if file exists and create if not. 
     fwrite($idFile, $id); 
@@ -24,9 +24,9 @@ $message = $_REQUEST['message'];
 
 
 //Writing
-include './state-file-controller-php'; 
+include './state-file-controller.php'; 
 $id = GetId(); 
-appendStateFile('../model/state_files/user_messages.txt',  $id.', '. $name.', '.$email.', '.$message.';'); 
+appendStateFile('../model/state_files/user_messages.txt',  $id.'^'. $name.'^'.$email.'^'.$message.';'); 
 $filename = '../model/state_files/user_messages.txt'; 
 $filestream = fopen($filename, 'a+'); 
 SetId(++$id); 

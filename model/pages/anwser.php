@@ -4,7 +4,7 @@
       include '../../control/state-file-controller.php'; 
     //Header
      session_start(); 
-     $_SESSION['currPage'] = '../model/pages/contact.php';
+     $_SESSION['currPage'] = '../model/pages/anwser.php';
      include '../header.php';
      printHeader(false); 
 
@@ -21,7 +21,7 @@
         ?>
         <script>
             function GetAnswer(fullInformation) {
-                var parts = fullInformation.split(','); 
+                var parts = fullInformation.split('^'); 
                 console.log(fullInformation); 
                 document.getElementById("questionText").value = parts[parts.length-1];
                 document.getElementById("questionId").value = parts[0];
@@ -41,8 +41,11 @@
        $fileSplitContent = getFormattedStateFile($_SESSION["fileContent"], ';');
         echo '<ul>'; 
         foreach($fileSplitContent as $split){
-            $inputFields = getFormattedStateFile($_SESSION["fileContent"], ',');
-            echo "<a href='#' onclick= \"GetAnswer('$split')\"><li>$inputFields[0], $inputFields[1]</li></a>"; 
+            $inputFields = getFormattedStateFile($split, '^');
+            $secondField = $inputFields[1] ?? ""; 
+            if($secondField != ""){
+               echo "<a href='#' onclick= \"GetAnswer('$split')\"><li>$inputFields[0], $secondField</li></a>"; 
+            }
         }
         echo '</ul>'; 
         ?>
@@ -52,7 +55,7 @@
     <div class="container">
          <div class="row">
               <div class="col-md-6 col-sm-12">
-                   <form id="answer-form" role="form" action="" method="post">
+                   <form id="answer-form" role="form" action="../../control/answer-contoller.php" method="post">
                         <div class="col-md-12 col-sm-12">
                              <textarea class="form-control" name="question" id="questionText" rows="8" placeholder="The questions will appear here" readonly></textarea>
                              <textarea class="form-control" id="answerText" rows="8" name="answer" required></textarea>

@@ -235,7 +235,7 @@
  
    <?php
     include 'model/contact.php';
-    printContact('./');
+    printContact('.');
     include 'model/footer.php';
     printFooter(true); 
     ?>
