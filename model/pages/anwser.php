@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <?php
+      include '../../control/state-file-controller.php'; 
     //Header
      session_start(); 
      $_SESSION['currPage'] = '../model/pages/contact.php';
@@ -8,11 +9,8 @@
      printHeader(false); 
 
     //Reading
-    $filename = '../../model/state_files/user_messages.txt'; 
-    $filestream = fopen($filename, 'r'); 
-    $fileContent = fread($filestream, filesize($filename)); 
+    $fileContent = readStateFile('../state_files/user_messages.txt'); 
     $_SESSION["fileContent"] = $fileContent;
-    fclose($filestream); 
     ?>
 
     <body  id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
@@ -26,6 +24,7 @@
                 var parts = fullInformation.split(','); 
                 console.log(fullInformation); 
                 document.getElementById("questionText").value = parts[parts.length-1];
+                document.getElementById("questionId").value = parts[0];
                 return false;
             }
         </script>
@@ -39,11 +38,10 @@
         <div class="questions">
             <?php
         //Displaying
-        $fileContent = $_SESSION["fileContent"]; 
-        $fileSplitContent = array_diff(explode(';', $fileContent), array("")); 
+       $fileSplitContent = getFormattedStateFile($_SESSION["fileContent"], ';');
         echo '<ul>'; 
         foreach($fileSplitContent as $split){
-            $inputFields = explode(',', $split);
+            $inputFields = getFormattedStateFile($_SESSION["fileContent"], ',');
             echo "<a href='#' onclick= \"GetAnswer('$split')\"><li>$inputFields[0], $inputFields[1]</li></a>"; 
         }
         echo '</ul>'; 
@@ -56,8 +54,9 @@
               <div class="col-md-6 col-sm-12">
                    <form id="answer-form" role="form" action="" method="post">
                         <div class="col-md-12 col-sm-12">
-                             <textarea class="form-control" rows="8" placeholder="The questions will appear here" name="question" readonly></textarea>
-                             <textarea class="form-control" rows="8" name="answer" required></textarea>
+                             <textarea class="form-control" name="question" id="questionText" rows="8" placeholder="The questions will appear here" readonly></textarea>
+                             <textarea class="form-control" id="answerText" rows="8" name="answer" required></textarea>
+                             <input type="hidden" id="questionId" name="questionId">
                         </div>
 
                         <div class="col-md-4 col-sm-12">
