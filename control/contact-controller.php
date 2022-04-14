@@ -1,11 +1,9 @@
 <?php
 session_start(); 
-//Add the Message to the DB and display the anwser here. 
-//Placeholder is using a file instead of DB.
 
 function GetId(){
 $idFileName = '../model/state_files/idLog.txt'; 
-$idFile = fopen($idFileName, 'r'); //TODO: Check if file exists and create if not. 
+$idFile = fopen($idFileName, 'r+');
 $id = fread($idFile, filesize($idFileName)); 
 fclose($idFile);
 return $id; 
@@ -13,7 +11,7 @@ return $id;
 
 function SetId(int $id){
     $idFileName = '../model/state_files/idLog.txt'; 
-    $idFile = fopen($idFileName, 'w'); //TODO: Check if file exists and create if not. 
+    $idFile = fopen($idFileName, 'w+');  
     fwrite($idFile, $id); 
     fclose($idFile);
 }

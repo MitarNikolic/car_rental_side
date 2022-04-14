@@ -1,13 +1,18 @@
 <?php
 function getFormattedStateFile(string $fileContent, string $separator){
-    return array_filter(explode($separator, $fileContent)); 
+    return explode($separator, $fileContent); 
 }
 
 function readStateFile(string $file){
-    $filename = $file; 
-    $filestream = fopen($filename, 'r+'); 
-    $fileContent = fread($filestream, filesize($filename)); 
-    fclose($filestream); 
+    $fileContent = ""; 
+    if(file_exists($file) && (filesize($file) > 0)){
+        $filename = $file; 
+        $filestream = fopen($filename, 'r+');
+        $fileContent = fread($filestream, filesize($filename)); 
+        fclose($filestream); 
+    
+    }
+
     return $fileContent; 
 }
 

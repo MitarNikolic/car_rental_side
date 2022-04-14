@@ -9,8 +9,10 @@
      printHeader(false); 
 
     //Reading
-    $fileContent = readStateFile('../state_files/user_messages.txt'); 
-    $_SESSION["fileContent"] = $fileContent;
+    $questionFileContent = readStateFile('../state_files/user_messages.txt'); 
+    $anwserFileContent = readStateFile('../state_files/user_answers.txt');  
+    $_SESSION["questionFileContent"] = $questionFileContent;
+    $_SESSION["answerFileContent"] = $anwserFileContent; 
     ?>
 
     <body  id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
@@ -20,11 +22,11 @@
         printNavigation(false);
         ?>
         <script>
-            function GetAnswer(fullInformation) {
-                var parts = fullInformation.split('^'); 
-                console.log(fullInformation); 
+            function GetAnswer(fullInformation, answer) {
+                var parts = fullInformation.split('^');   
                 document.getElementById("questionText").value = parts[parts.length-1];
                 document.getElementById("questionId").value = parts[0];
+                document.getElementById("answerText").value = answer; 
                 return false;
             }
         </script>
@@ -37,14 +39,31 @@
         
         <div class="questions">
             <?php
+
         //Displaying
-       $fileSplitContent = getFormattedStateFile($_SESSION["fileContent"], ';');
+       $questionFileSplitContent = getFormattedStateFile($_SESSION["questionFileContent"], ';');
+       $answerFileSplitContent = getFormattedStateFile($_SESSION["answerFileContent"], ';');
+       $answers;   
         echo '<ul>'; 
-        foreach($fileSplitContent as $split){
-            $inputFields = getFormattedStateFile($split, '^');
-            $secondField = $inputFields[1] ?? ""; 
-            if($secondField != ""){
-               echo "<a href='#' onclick= \"GetAnswer('$split')\"><li>$inputFields[0], $secondField</li></a>"; 
+        foreach($questionFileSplitContent as $questionSplit){ 
+            $questionFields = getFormattedStateFile($questionSplit, '^');
+            $question = $questionFields[1] ?? ""; 
+            if($answerFileSplitContent != ""){
+               $hasAnswer = false; 
+               foreach($answerFileSplitContent as $answerSplit){
+                    $answerFields = getFormattedStateFile($answerSplit, '^');
+                      if(($answerFields[0] == $questionFields[0]) && isset($answerFields[0]) &&  $answerFields[0] != ""){
+                         $answers[$questionFields[0]] = $answerFields[1];  
+                         $hasAnswer = true; 
+                      }
+               }
+            }
+            if(!$hasAnswer){
+               $answers[$questionFields[0]] = ""; 
+            }
+            if($question != ""){
+               $id = $questionFields[0];  
+               echo "<a href='#' onclick= \"GetAnswer('$questionSplit', '$answers[$id]')\"><li>$questionFields[0], $question</li></a>"; 
             }
         }
         echo '</ul>'; 
@@ -63,7 +82,7 @@
                         </div>
 
                         <div class="col-md-4 col-sm-12">
-                             <input type="submit" class="form-control" name="answer" value="Answer">
+                             <input type="submit" class="form-control" name="answerButton" value="Answer">
                         </div>
 
                    </form>
