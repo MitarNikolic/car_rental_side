@@ -16,10 +16,12 @@ function SetId(int $id){
     fclose($idFile);
 }
 
-$name = $_REQUEST['name']; 
-$email = $_REQUEST['email']; 
-$message = $_REQUEST['message'];
 
+//TODO: Validate all the below
+//name can contain space but no special charackters. 
+$name = htmlspecialchars($_REQUEST['name']);
+$email = htmlspecialchars($_REQUEST['email']); 
+$message = htmlsdpecialchars($_REQUEST['message']); 
 
 //Writing
 include './state-file-controller.php'; 
