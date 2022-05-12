@@ -12,7 +12,7 @@ function readStateFile(string $file){
         fclose($filestream); 
     
     }
-
+    
     return $fileContent; 
 }
 
@@ -24,10 +24,11 @@ function writeStateFile(string $file, string $content){
 }
 
 
-function appendStateFile(string $file, string $content){
-    $filename = $file; 
-    $filestream = fopen($filename, 'a+'); 
-    fwrite($filestream, $content); 
-    fclose($filestream); 
+function appendStateFile(string $filename, string $content){ 
+    if(file_exists($filename)){
+        $filestream = fopen($filename, 'a+'); 
+        fwrite($filestream, $content); 
+        fclose($filestream); 
+    }
 }
 ?>
