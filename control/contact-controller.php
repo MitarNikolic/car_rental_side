@@ -21,7 +21,29 @@ function SetId(int $id){
 //name can contain space but no special charackters. 
 $name = htmlspecialchars($_REQUEST['name']);
 $email = htmlspecialchars($_REQUEST['email']); 
-$message = htmlsdpecialchars($_REQUEST['message']); 
+$message = htmlspecialchars($_REQUEST['message']); 
+
+
+$nameregex = '/^[A-ZÜÖÄ][a-züöä]*$/';
+if (!preg_match($nameregex, $name)) {
+    echo 'Name is not valid';
+}
+
+
+$emailregex = '/^[^@\s]+@[^@\s]+\.[^@\s]+$/';
+if (($email != NULL) || ($email != "")) {
+    if (!preg_match($emailregex, $email)) {
+        echo 'Email is not valid';
+    }
+}
+
+//Regex pattern that allows only letters, numbers, spaces, and some special characters.
+$messageregex = '/^[A-Za-z0-9\s\,\.\?\!\:\;\(\)\-\_\+\=\@\#\$\%\&\*\[\]\{\}\"\'\`\/\|\\\]*$/';
+if (($message != NULL) || ($message != "")) {
+    if (!preg_match($messageregex, $message)) {
+        echo 'Message is not valid';
+    }
+}
 
 //Writing
 include './state-file-controller.php'; 
